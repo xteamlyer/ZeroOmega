@@ -20,11 +20,14 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Install dependencies, build, release
+      - name: Install dependencies
+        run: |
+          pnpm install -r
+          pnpm approve-builds --all
+
+      - name: Build, release
         working-directory: 'omega-build'
         run: |
-          npm run deps
-          npm run dev
           npm run build
           npm run release
 
